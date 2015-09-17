@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>cliclick Path</key>
+	<string>/usr/local/bin/cliclick</string>
+	<key>WidgetURL</key>
+	<array>
+		<string>http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/</string>
+		<string>http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/?widget=true</string>
+		<string>http://osapi.dmm.com/gadgets/ifr?synd=dmm&amp;container=dmm&amp;owner=18354682&amp;viewer=18354682&amp;aid=854854</string>
+	</array>
+	<key>WindowTitle</key>
+	<array>
+		<string>艦隊これくしょん</string>
+		<string>艦これウィジェット</string>
+	</array>
+	<key>WindowSize</key>
+	<dict>
+		<key>Small</key>
+		<dict>
+			<key>width</key>
+			<integer>600</integer>
+			<key>height</key>
+			<integer>360</integer>
+		</dict>
+		<key>Middle</key>
+		<dict>
+			<key>width</key>
+			<integer>800</integer>
+			<key>height</key>
+			<integer>480</integer>
+		</dict>
+		<key>Large</key>
+		<dict>
+			<key>width</key>
+			<integer>1200</integer>
+			<key>height</key>
+			<integer>720</integer>
+		</dict>
+	</dict>
+	<key>Initial pointid</key>
+	<string>PMainBokouBokou</string>
+	<key>Long click sec</key>
+	<integer>8</integer>
+	<key>Sub Up key</key>
+	<string>d</string>
+	<key>Sub Down key</key>
+	<string>s</string>
+</dict>
+</plist>

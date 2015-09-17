@@ -12,6 +12,21 @@
 		D2FBBC801B5518B100017BB5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC7F1B5518B100017BB5 /* Images.xcassets */; };
 		D2FBBC831B5518B100017BB5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC811B5518B100017BB5 /* MainMenu.xib */; };
 		D2FBBC8F1B5518B100017BB5 /* KancolleToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBC8E1B5518B100017BB5 /* KancolleToolTests.m */; };
+		D2FBBCA11B5519BD00017BB5 /* Keybind.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC9C1B5519BD00017BB5 /* Keybind.plist */; };
+		D2FBBCA21B5519BD00017BB5 /* Macro.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC9D1B5519BD00017BB5 /* Macro.plist */; };
+		D2FBBCA31B5519BD00017BB5 /* Mode.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC9E1B5519BD00017BB5 /* Mode.plist */; };
+		D2FBBCA41B5519BD00017BB5 /* Pointid.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC9F1B5519BD00017BB5 /* Pointid.plist */; };
+		D2FBBCA51B5519BD00017BB5 /* PointidToMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBCA01B5519BD00017BB5 /* PointidToMode.plist */; };
+		D2FBBCA91B551A0400017BB5 /* WebAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBCA81B551A0400017BB5 /* WebAccess.m */; };
+		D2FBBCAD1B553F0900017BB5 /* Widget.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBCAC1B553F0900017BB5 /* Widget.plist */; };
+		D2FBBCBA1B5540C600017BB5 /* KancolleData.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBCAF1B5540C600017BB5 /* KancolleData.m */; };
+		D2FBBCBB1B5540C600017BB5 /* Keybind.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBCB11B5540C600017BB5 /* Keybind.m */; };
+		D2FBBCBC1B5540C600017BB5 /* KeybindTable.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBCB31B5540C600017BB5 /* KeybindTable.m */; };
+		D2FBBCBD1B5540C600017BB5 /* Macro.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBCB51B5540C600017BB5 /* Macro.m */; };
+		D2FBBCBE1B5540C600017BB5 /* Mode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBCB71B5540C600017BB5 /* Mode.m */; };
+		D2FBBCBF1B5540C600017BB5 /* Pointid.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBCB91B5540C600017BB5 /* Pointid.m */; };
+		D2FBBCC21B5540E800017BB5 /* ClickPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBCC11B5540E800017BB5 /* ClickPoint.m */; };
+		D2FBBCC81B56824000017BB5 /* PointidToMode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBCC71B56824000017BB5 /* PointidToMode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +50,31 @@
 		D2FBBC881B5518B100017BB5 /* KancolleToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KancolleToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2FBBC8D1B5518B100017BB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2FBBC8E1B5518B100017BB5 /* KancolleToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KancolleToolTests.m; sourceTree = "<group>"; };
+		D2FBBC9C1B5519BD00017BB5 /* Keybind.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keybind.plist; sourceTree = "<group>"; };
+		D2FBBC9D1B5519BD00017BB5 /* Macro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Macro.plist; sourceTree = "<group>"; };
+		D2FBBC9E1B5519BD00017BB5 /* Mode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Mode.plist; sourceTree = "<group>"; };
+		D2FBBC9F1B5519BD00017BB5 /* Pointid.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Pointid.plist; sourceTree = "<group>"; };
+		D2FBBCA01B5519BD00017BB5 /* PointidToMode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PointidToMode.plist; sourceTree = "<group>"; };
+		D2FBBCA61B5519F300017BB5 /* Chrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chrome.h; sourceTree = "<group>"; };
+		D2FBBCA71B551A0400017BB5 /* WebAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAccess.h; sourceTree = "<group>"; };
+		D2FBBCA81B551A0400017BB5 /* WebAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAccess.m; sourceTree = "<group>"; };
+		D2FBBCAC1B553F0900017BB5 /* Widget.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Widget.plist; sourceTree = "<group>"; };
+		D2FBBCAE1B5540C600017BB5 /* KancolleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KancolleData.h; sourceTree = "<group>"; };
+		D2FBBCAF1B5540C600017BB5 /* KancolleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KancolleData.m; sourceTree = "<group>"; };
+		D2FBBCB01B5540C600017BB5 /* Keybind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keybind.h; sourceTree = "<group>"; };
+		D2FBBCB11B5540C600017BB5 /* Keybind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keybind.m; sourceTree = "<group>"; };
+		D2FBBCB21B5540C600017BB5 /* KeybindTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeybindTable.h; sourceTree = "<group>"; };
+		D2FBBCB31B5540C600017BB5 /* KeybindTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeybindTable.m; sourceTree = "<group>"; };
+		D2FBBCB41B5540C600017BB5 /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		D2FBBCB51B5540C600017BB5 /* Macro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Macro.m; sourceTree = "<group>"; };
+		D2FBBCB61B5540C600017BB5 /* Mode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mode.h; sourceTree = "<group>"; };
+		D2FBBCB71B5540C600017BB5 /* Mode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mode.m; sourceTree = "<group>"; };
+		D2FBBCB81B5540C600017BB5 /* Pointid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pointid.h; sourceTree = "<group>"; };
+		D2FBBCB91B5540C600017BB5 /* Pointid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pointid.m; sourceTree = "<group>"; };
+		D2FBBCC01B5540E800017BB5 /* ClickPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickPoint.h; sourceTree = "<group>"; };
+		D2FBBCC11B5540E800017BB5 /* ClickPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickPoint.m; sourceTree = "<group>"; };
+		D2FBBCC61B56824000017BB5 /* PointidToMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointidToMode.h; sourceTree = "<group>"; };
+		D2FBBCC71B56824000017BB5 /* PointidToMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointidToMode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +128,10 @@
 		D2FBBC781B5518B100017BB5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D2FBBC9B1B55191700017BB5 /* MouseClick */,
+				D2FBBC9A1B5518F600017BB5 /* WebAccess */,
+				D2FBBC991B5518E400017BB5 /* DataObject */,
+				D2FBBC981B5518C100017BB5 /* Plist */,
 				D2FBBC791B5518B100017BB5 /* Info.plist */,
 				D2FBBC7D1B5518B100017BB5 /* main.m */,
 			);
@@ -109,6 +153,59 @@
 				D2FBBC8D1B5518B100017BB5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2FBBC981B5518C100017BB5 /* Plist */ = {
+			isa = PBXGroup;
+			children = (
+				D2FBBC9C1B5519BD00017BB5 /* Keybind.plist */,
+				D2FBBC9D1B5519BD00017BB5 /* Macro.plist */,
+				D2FBBC9E1B5519BD00017BB5 /* Mode.plist */,
+				D2FBBC9F1B5519BD00017BB5 /* Pointid.plist */,
+				D2FBBCA01B5519BD00017BB5 /* PointidToMode.plist */,
+				D2FBBCAC1B553F0900017BB5 /* Widget.plist */,
+			);
+			name = Plist;
+			sourceTree = "<group>";
+		};
+		D2FBBC991B5518E400017BB5 /* DataObject */ = {
+			isa = PBXGroup;
+			children = (
+				D2FBBCAE1B5540C600017BB5 /* KancolleData.h */,
+				D2FBBCAF1B5540C600017BB5 /* KancolleData.m */,
+				D2FBBCB01B5540C600017BB5 /* Keybind.h */,
+				D2FBBCB11B5540C600017BB5 /* Keybind.m */,
+				D2FBBCB21B5540C600017BB5 /* KeybindTable.h */,
+				D2FBBCB31B5540C600017BB5 /* KeybindTable.m */,
+				D2FBBCB41B5540C600017BB5 /* Macro.h */,
+				D2FBBCB51B5540C600017BB5 /* Macro.m */,
+				D2FBBCB61B5540C600017BB5 /* Mode.h */,
+				D2FBBCB71B5540C600017BB5 /* Mode.m */,
+				D2FBBCB81B5540C600017BB5 /* Pointid.h */,
+				D2FBBCB91B5540C600017BB5 /* Pointid.m */,
+				D2FBBCC61B56824000017BB5 /* PointidToMode.h */,
+				D2FBBCC71B56824000017BB5 /* PointidToMode.m */,
+			);
+			name = DataObject;
+			sourceTree = "<group>";
+		};
+		D2FBBC9A1B5518F600017BB5 /* WebAccess */ = {
+			isa = PBXGroup;
+			children = (
+				D2FBBCA61B5519F300017BB5 /* Chrome.h */,
+				D2FBBCA71B551A0400017BB5 /* WebAccess.h */,
+				D2FBBCA81B551A0400017BB5 /* WebAccess.m */,
+			);
+			name = WebAccess;
+			sourceTree = "<group>";
+		};
+		D2FBBC9B1B55191700017BB5 /* MouseClick */ = {
+			isa = PBXGroup;
+			children = (
+				D2FBBCC01B5540E800017BB5 /* ClickPoint.h */,
+				D2FBBCC11B5540E800017BB5 /* ClickPoint.m */,
+			);
+			name = MouseClick;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,8 +288,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2FBBCA41B5519BD00017BB5 /* Pointid.plist in Resources */,
 				D2FBBC801B5518B100017BB5 /* Images.xcassets in Resources */,
+				D2FBBCAD1B553F0900017BB5 /* Widget.plist in Resources */,
+				D2FBBCA31B5519BD00017BB5 /* Mode.plist in Resources */,
 				D2FBBC831B5518B100017BB5 /* MainMenu.xib in Resources */,
+				D2FBBCA11B5519BD00017BB5 /* Keybind.plist in Resources */,
+				D2FBBCA21B5519BD00017BB5 /* Macro.plist in Resources */,
+				D2FBBCA51B5519BD00017BB5 /* PointidToMode.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,8 +313,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2FBBCBA1B5540C600017BB5 /* KancolleData.m in Sources */,
 				D2FBBC7E1B5518B100017BB5 /* main.m in Sources */,
+				D2FBBCBD1B5540C600017BB5 /* Macro.m in Sources */,
+				D2FBBCBF1B5540C600017BB5 /* Pointid.m in Sources */,
+				D2FBBCC81B56824000017BB5 /* PointidToMode.m in Sources */,
 				D2FBBC7C1B5518B100017BB5 /* AppDelegate.m in Sources */,
+				D2FBBCBC1B5540C600017BB5 /* KeybindTable.m in Sources */,
+				D2FBBCBB1B5540C600017BB5 /* Keybind.m in Sources */,
+				D2FBBCC21B5540E800017BB5 /* ClickPoint.m in Sources */,
+				D2FBBCBE1B5540C600017BB5 /* Mode.m in Sources */,
+				D2FBBCA91B551A0400017BB5 /* WebAccess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +510,7 @@
 				D2FBBC941B5518B100017BB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2FBBC951B5518B100017BB5 /* Build configuration list for PBXNativeTarget "KancolleToolTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +519,7 @@
 				D2FBBC971B5518B100017BB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

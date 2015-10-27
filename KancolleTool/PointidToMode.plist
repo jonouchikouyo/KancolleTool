@@ -7,88 +7,97 @@
             <string>PMainBokouBokou</string>
             <key>modeid</key>
             <string>ModeNormal</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <dict>
             <key>pointid</key>
             <string>PSmenuComonBokou</string>
             <key>modeid</key>
             <string>ModeNormal</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <dict>
             <key>pointid</key>
             <string>PMainComonBack</string>
             <key>modeid</key>
             <string>ModeNormal</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <dict>
             <key>pointid</key>
             <string>PMainBokouHnsei</string>
             <key>modeid</key>
             <string>ModeHnsei</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <dict>
             <key>pointid</key>
             <string>PMainBokouKaiso</string>
             <key>modeid</key>
             <string>ModeKaiso</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <dict>
             <key>pointid</key>
             <string>PMainBokouKshou</string>
             <key>modeid</key>
             <string>ModeKenzo</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <dict>
             <key>pointid</key>
             <string>PMainBokouNykyo</string>
             <key>modeid</key>
             <string>ModeNykyo</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <dict>
             <key>pointid</key>
             <string>PMainBokouHokyu</string>
             <key>modeid</key>
             <string>ModeHokyu</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
+        <dict>
+            <key>pointid</key>
+            <string>PMainBokouShtgk</string>
+            <key>modeid</key>
+            <string>ModeShuko</string>
+            <key>backmode</key>
+            <false/>
+        </dict>
+        <!-- Mode Shuko -->
         <dict>
             <key>pointid</key>
             <string>PShtgkShtgkShtgk</string>
             <key>modeid</key>
             <string>ModeShtgk</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <dict>
             <key>pointid</key>
             <string>PShtgkShtgkEnshu</string>
             <key>modeid</key>
             <string>ModeEnshu</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <dict>
             <key>pointid</key>
             <string>PShtgkShtgkEnsei</string>
             <key>modeid</key>
             <string>ModeEnsei</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <!-- Mode Shtgk -->
         <dict>
@@ -96,8 +105,8 @@
             <string>PShtgkSentoTanju</string>
             <key>modeid</key>
             <string>ModeNormal</string>
-						<key>backmode</key>
-						<false/>
+            <key>backmode</key>
+            <false/>
         </dict>
         <dict>
             <key>pointid</key>

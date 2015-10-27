@@ -10,6 +10,14 @@
 		<key>mode</key>
 		<string>:a</string>
 	</dict>
+    <dict>
+        <key>modeid</key>
+        <string>ModeShuko</string>
+        <key>modeName</key>
+        <string>出港モード</string>
+        <key>mode</key>
+        <string>:sk</string>
+    </dict>
 	<dict>
 		<key>modeid</key>
 		<string>ModeShtgk</string>
@@ -144,7 +152,7 @@
 		<key>modeName</key>
 		<string>開発モード</string>
 		<key>mode</key>
-		<string>:g</string>
+		<string>:d</string>
 	</dict>
 	<dict>
 		<key>modeid</key>

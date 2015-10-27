@@ -15,6 +15,7 @@
 @interface AppDelegate () {
     NSMutableArray *marrKeybindTable;
     NSString *popupDefaultTitle;
+    NSString *popupDefaultShtgkArea;
     NSString *preModeid;
     NSString *bokouPointid;
     float longClickSec;
@@ -24,22 +25,17 @@
 @property (weak) IBOutlet NSSearchField *searchKeybind;
 @property (weak) IBOutlet NSButton *buttonClick;
 @property (weak) IBOutlet NSButton *buttonLongClick;
-@property (weak) IBOutlet NSPopUpButton *popupMacroShtgk;
+@property (weak) IBOutlet NSButton *buttonMacroBokou;
+@property (weak) IBOutlet NSButton *buttonEnseiBokou;
+@property (weak) IBOutlet NSButton *buttonShtgkBokou;
 @property (weak) IBOutlet NSPopUpButton *popupMacroBokou;
 @property (weak) IBOutlet NSPopUpButton *popupMacroEnsei;
+@property (weak) IBOutlet NSPopUpButton *popupShtgkArea;
 @property (weak) IBOutlet NSTextField *labelInputMode;
 @property (weak) IBOutlet NSTextField *labelPointidName;
 @property (weak) IBOutlet NSTextField *labelWaitsec;
 @property (weak) IBOutlet NSTextField *labelClickTime;
 @property (weak) IBOutlet NSStepper *stepperClickTime;
-@property (weak) IBOutlet NSMatrix *matrixSelectShtgk;
-@property (weak) IBOutlet NSButton *buttonBokou;
-@property (weak) IBOutlet NSButton *buttonMacroShtgk;
-@property (weak) IBOutlet NSButton *buttonMacroSngki;
-@property (weak) IBOutlet NSButton *buttonMacroTetai;
-@property (weak) IBOutlet NSButton *buttonMacroRetun;
-@property (weak) IBOutlet NSButton *buttonMacroTanju;
-@property (weak) IBOutlet NSButton *buttonMacroTanjuPlus;
 @property (weak) IBOutlet NSTableView *tableKeybind;
 @property (weak) IBOutlet NSTextField *labelKeyCheck;
 @property (weak) IBOutlet NSWindow *window;
@@ -51,22 +47,17 @@
 @synthesize searchKeybind;
 @synthesize buttonClick;
 @synthesize buttonLongClick;
-@synthesize popupMacroShtgk;
+@synthesize buttonMacroBokou;
+@synthesize buttonEnseiBokou;
+@synthesize buttonShtgkBokou;
 @synthesize popupMacroBokou;
 @synthesize popupMacroEnsei;
+@synthesize popupShtgkArea;
 @synthesize labelInputMode;
 @synthesize labelPointidName;
 @synthesize labelWaitsec;
 @synthesize labelClickTime;
 @synthesize stepperClickTime;
-@synthesize matrixSelectShtgk;
-@synthesize buttonBokou;
-@synthesize buttonMacroShtgk;
-@synthesize buttonMacroSngki;
-@synthesize buttonMacroTetai;
-@synthesize buttonMacroRetun;
-@synthesize buttonMacroTanju;
-@synthesize buttonMacroTanjuPlus;
 @synthesize tableKeybind;
 @synthesize labelKeyCheck;
 @synthesize window;
@@ -79,6 +70,8 @@ static NSString *spaceString = @" ";
 static NSString *errMsgWindow = @"ウインドウが存在しません";
 static NSString *errMsgActive = @"アクティブ化失敗";
 static NSString *errMsgPointid = @"座標がみつかりません";
+static NSString *openString = @"open";
+static NSString *quitString = @"quit";
 
 // ---------------------------
 // 初期化
@@ -93,68 +86,101 @@ static NSString *errMsgPointid = @"座標がみつかりません";
     [self inputModeInitialize];
     
     popupDefaultTitle = @"マクロ選択";
+    popupDefaultShtgkArea = @"エリア選択";
     
     KancolleData *kdata = [KancolleData shareManager];
     
     // popup Button の設定
-    NSMenu *menuMacroShtgk = [[NSMenu alloc] init];
     NSMenu *menuMacroBokou = [[NSMenu alloc] init];
     NSMenu *menuMacroEnsei = [[NSMenu alloc] init];
+    NSMenu *menuMacroShtgkArea = [[NSMenu alloc] init];
     
     NSMenuItem *menuItem;
     
     menuItem= [[NSMenuItem alloc] initWithTitle:popupDefaultTitle action:nil keyEquivalent:blankString];
-    [menuMacroShtgk addItem:menuItem];
-    
-    menuItem= [[NSMenuItem alloc] initWithTitle:popupDefaultTitle action:nil keyEquivalent:blankString];
     [menuMacroBokou addItem:menuItem];
-    
-    menuItem= [[NSMenuItem alloc] initWithTitle:popupDefaultTitle action:nil keyEquivalent:blankString];
-    [menuMacroEnsei addItem:menuItem];
-    
-    menuItem = [NSMenuItem separatorItem];
-    [menuMacroShtgk addItem:menuItem];
 
     menuItem = [NSMenuItem separatorItem];
     [menuMacroBokou addItem:menuItem];
     
+    menuItem= [[NSMenuItem alloc] initWithTitle:popupDefaultTitle action:nil keyEquivalent:blankString];
+    [menuMacroEnsei addItem:menuItem];
+    
     menuItem = [NSMenuItem separatorItem];
     [menuMacroEnsei addItem:menuItem];
     
+    menuItem= [[NSMenuItem alloc] initWithTitle:popupDefaultShtgkArea action:nil keyEquivalent:blankString];
+    [menuMacroShtgkArea addItem:menuItem];
+    
+    menuItem = [NSMenuItem separatorItem];
+    [menuMacroShtgkArea addItem:menuItem];
+
+    NSString *bokouMacroCategory = blankString;
+    NSString *enseiMacroCategory = blankString;
+    NSString *shtgkArea1stChar = blankString;
+
     for (Macro *macroObj in kdata.marrMacro) {
-        if ([macroObj.macroCategory isEqualTo:@"Shtgk"] && macroObj.macroDispState) {
-            menuItem = [[NSMenuItem alloc] initWithTitle:macroObj.macroName action:nil keyEquivalent:@""];
-            [menuMacroShtgk addItem:menuItem];
-        }
-        else if ([macroObj.macroCategory isEqualTo:@"Bokou"] && macroObj.macroDispState) {
+        if ([macroObj.macroCategory isEqualTo:@"Bokou"] && macroObj.macroDispState) {
+
+            // macroidの先頭5文字目が1つ前と異なる場合(エリアが異なる場合)はセパレータを入れる
+            NSString *macroNameString = [macroObj.macroid substringToIndex:5];
+            if (![macroNameString isEqualToString:bokouMacroCategory] && ![bokouMacroCategory isEqualToString:blankString]) {
+                menuItem = [NSMenuItem separatorItem];
+                [menuMacroBokou addItem:menuItem];
+            }
+            bokouMacroCategory = macroNameString;
+            
             menuItem = [[NSMenuItem alloc] initWithTitle:macroObj.macroName action:nil keyEquivalent:@""];
             [menuMacroBokou addItem:menuItem];
         }
         else if ([macroObj.macroCategory isEqualTo:@"Khatu"] && macroObj.macroDispState) {
+           
+            // macroidの先頭5文字目が1つ前と異なる場合(エリアが異なる場合)はセパレータを入れる
+            NSString *macroNameString = [macroObj.macroid substringToIndex:5];
+            if (![macroNameString isEqualToString:bokouMacroCategory] && ![bokouMacroCategory isEqualToString:blankString]) {
+                menuItem = [NSMenuItem separatorItem];
+                [menuMacroBokou addItem:menuItem];
+            }
+            bokouMacroCategory = macroNameString;
+            
             menuItem = [[NSMenuItem alloc] initWithTitle:macroObj.macroName action:nil keyEquivalent:@""];
             [menuMacroBokou addItem:menuItem];
         }
         else if ([macroObj.macroCategory isEqualTo:@"Ensei"] && macroObj.macroDispState) {
+            
+            // macroidの先頭6文字目が1つ前と異なる場合(エリアが異なる場合)はセパレータを入れる
+            NSString *macroNameString = [macroObj.macroid substringWithRange:NSMakeRange(5, 1)];
+            if (![macroNameString isEqualToString:enseiMacroCategory] && ![enseiMacroCategory isEqualToString:blankString]) {
+                menuItem = [NSMenuItem separatorItem];
+                [menuMacroEnsei addItem:menuItem];
+            }
+            enseiMacroCategory = macroNameString;
+            
             menuItem = [[NSMenuItem alloc] initWithTitle:macroObj.macroName action:nil keyEquivalent:@""];
             [menuMacroEnsei addItem:menuItem];
         }
+        else if ([macroObj.macroCategory isEqualTo:@"ShtgkArea"] && macroObj.macroDispState) {
+            
+            // macroidの先頭から5文字目が1つ前と異なる場合(エリアが異なる場合)はセパレータを入れる
+            NSString *macroNameString = [macroObj.macroid substringWithRange:NSMakeRange(5, 1)];
+            if (![macroNameString isEqualToString:shtgkArea1stChar] && ![shtgkArea1stChar isEqualToString:blankString]) {
+                menuItem = [NSMenuItem separatorItem];
+                [menuMacroShtgkArea addItem:menuItem];
+            }
+            shtgkArea1stChar = macroNameString;
+            
+            menuItem = [[NSMenuItem alloc] initWithTitle:macroObj.macroName action:nil keyEquivalent:@""];
+            [menuMacroShtgkArea addItem:menuItem];
+        }
+
     }
     // ポップアップにマクロを設定
-    [popupMacroShtgk setMenu:menuMacroShtgk];
     [popupMacroBokou setMenu:menuMacroBokou];
     [popupMacroEnsei setMenu:menuMacroEnsei];
+    [popupShtgkArea setMenu:menuMacroShtgkArea];
     
     // Plist読み込み
     [self readPlist];
-
-    // ボタンの設定
-    [buttonBokou setEnabled:NO];
-    [buttonMacroShtgk setEnabled:NO];
-    [buttonMacroSngki setEnabled:YES];
-    [buttonMacroTetai setEnabled:YES];
-    [buttonMacroRetun setEnabled:NO];
-    [buttonMacroTanju setEnabled:NO];
-    [buttonMacroTanjuPlus setEnabled:NO];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -281,6 +307,7 @@ static NSString *errMsgPointid = @"座標がみつかりません";
     
     // 直前の処理でkeybindからpointidを取得しているので、次にpointidからmodeを取得する
     for (PointidToMode *pointidToModeObj in kdataObj.marrPointidToMode) {
+        
         if ([pointidToModeObj.pointid isEqualToString:cpointObj.pointId]) {
             
             // backmode が true の場合、直前のモードに変更
@@ -434,6 +461,22 @@ static NSString *errMsgPointid = @"座標がみつかりません";
     return rmkb;
 }
 
+// --------------------------
+// 名称 ポップアップマクロ実行
+// 用途 ポップアップで選択されたマクロを実行する
+// --------------------------
+- (void)popupMacroExe:(NSString *)popupItem {
+    
+    KancolleData *kdata = [KancolleData shareManager];
+    
+    for (Macro *macroObj in kdata.marrMacro) {
+        if ([popupItem isEqualToString:macroObj.macroName]) {
+            [self exeMacroid:macroObj.macroid];
+            break;
+        }
+    }
+}
+
 #pragma mark Control Action
 // --------------------------
 // 名称 テキスト変更通知
@@ -450,9 +493,23 @@ static NSString *errMsgPointid = @"座標がみつかりません";
     
     // ウインドウの存在確認
     WebAccess *webObj = [WebAccess shareManager];
+
+    // ウインドウが起動していない場合
     if (![webObj isKancolleWindow]) {
-        [self frontMostWindowSearchText:blankString LabelPointName:@"ウインドウが存在しません"];
-        return;
+        // "open"と入力された場合のみウィジェットを起動する。それ以外はエラーとして弾く
+        NSRange range = [openString rangeOfString:inputKeybind];
+        if (range.location != NSNotFound) {
+            if ([inputKeybind isEqualToString:openString]) {
+                [self openWidget];
+                return;
+            }
+            else
+                return;
+        }
+        else {
+            [self frontMostWindowSearchText:blankString LabelPointName:@"ウインドウが存在しません"];
+            return;
+        }
     }
     
     // 空白でない場合、keybindTable 内の文字列と一致するか確認する
@@ -470,6 +527,21 @@ static NSString *errMsgPointid = @"座標がみつかりません";
         }
         
         if (!isKeybind) {
+            
+            // ウインドウが起動している場合、quitと入力されたらウィジェットを閉じる
+            NSRange range = [quitString rangeOfString:inputKeybind];
+            if (range.location != NSNotFound) {
+                if ([inputKeybind isEqualToString:quitString]) {
+                    [self quitWidget];
+                    labelKeyCheck.stringValue = blankString;
+                    searchKeybind.stringValue = blankString;
+                    [self changeSearchPredicate:blankString];
+
+                    return;
+                }
+                else
+                    return;
+            }
             
             labelKeyCheck.stringValue = @"キーが存在しません";
             searchKeybind.stringValue = blankString;
@@ -740,11 +812,114 @@ static NSString *errMsgPointid = @"座標がみつかりません";
 
 #pragma mark IBAction Click Button
 // --------------------------
+// 名称 STARTボタン
+// 用途 ウインドウが立ち上がった後のSTARTボタンを押す
+// --------------------------
+- (IBAction)buttonStart:(id)sender {
+    [self ClickWithPointid:@"PWdgetGameStart"];
+}
+
+// --------------------------
+// 名称 Widget 起動ボタン
+// 用途 Widgetを起動する
+// --------------------------
+- (IBAction)buttonOpenWidget:(id)sender {
+    [self openWidget];
+}
+
+- (void)openWidget {
+    
+    // ウインドウの存在確認
+    WebAccess *webObj = [WebAccess shareManager];
+    
+    if (![webObj isKancolleWindow]) {
+        
+        if([webObj openKancolleWidgetWindow]) {
+            
+            KancolleData *kdataObj = [KancolleData shareManager];
+            Mode *modeObj = [kdataObj.marrMode objectAtIndex:ModeNormal];
+            
+            ClickPoint *cpointObj = [ClickPoint shareManager];
+            [cpointObj changeCurrentInputModeid:modeObj.modeid];
+            [self inputModeInitialize];
+            [self changeSearchPredicate:blankString];
+            [self frontMostWindowSearchText:blankString LabelPointName:blankString];
+        }
+        else {
+            [self frontMostWindowSearchText:blankString LabelPointName:@"ウインドウ起動失敗"];
+        }
+    }
+    else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"艦これウインドウは既に起動しています。"];
+        [alert runModal];
+    }
+    
+    // ゲームスタートのキーバインドをセット
+    searchKeybind.stringValue = [self searchKeybindWithPointId:@"PWdgetGameStart"];
+}
+
+// --------------------------
+// 名称 Widget 終了ボタン
+// 用途 Widgetウインドウを閉じる
+// --------------------------
+- (IBAction)buttonQuitWidget:(id)sender {
+    [self quitWidget];
+}
+
+- (void)quitWidget {
+    
+    // ウインドウの存在確認
+    WebAccess *webObj = [WebAccess shareManager];
+    
+    if ([webObj isKancolleWindow]) {
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert addButtonWithTitle:@"Cancel"];
+        [alert setMessageText:@"艦これウィジェットを閉じますか？"];
+        [alert setInformativeText:@"終了確認"];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        
+        if ([alert runModal] == NSAlertFirstButtonReturn) {
+            
+            // ノーマルモードにして終了する
+            KancolleData *kdataObj = [KancolleData shareManager];
+            Mode *modeObj = [kdataObj.marrMode objectAtIndex:ModeNormal];
+            
+            ClickPoint *cpointObj = [ClickPoint shareManager];
+            [cpointObj changeCurrentInputModeid:modeObj.modeid];
+            
+            // ラベルの初期化
+            [self inputModeInitialize];
+            [self changeSearchPredicate:blankString];
+            [self frontMostWindowSearchText:blankString LabelPointName:blankString];
+            
+            // OK clicked
+            if(![webObj closeKancolleWidgetWindow]) {
+                
+                [self frontMostWindowSearchText:blankString LabelPointName:@"ウインドウClose失敗"];
+            }
+        }
+    }
+    else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"艦これウインドウが起動していません。"];
+        [alert runModal];
+    }
+}
+
+// --------------------------
 // 名称 Click Button
-// 用途 カーソル位置のクリック または ロングクリック
+// 用途 カーソル位置のクリック
 // --------------------------
 - (IBAction)buttonClick:(id)sender {
     
+    [self ClickWithPointid:blankString];
+}
+
+- (void)ClickWithPointid:(NSString *)pid {
+
     ClickPoint *cpointObj = [ClickPoint shareManager];
     
     // ウインドウの存在確認
@@ -760,6 +935,11 @@ static NSString *errMsgPointid = @"座標がみつかりません";
         return;
     }
     
+    // pointidがセットされている場合
+    if (![pid isEqualToString:blankString]) {
+        [cpointObj setClickDownPointWithPointid:pid];
+    }
+    
     // マウスクリック
     [cpointObj clickPointWithIsClick:YES];
     
@@ -770,9 +950,14 @@ static NSString *errMsgPointid = @"座標がみつかりません";
     // keybindTableの初期化
     [self changeSearchPredicate:blankString];
     
+    // カーソルをクリックボタン上に移動
     [self moveMouseCursor];
 }
 
+// --------------------------
+// 名称 Click Button
+// 用途 カーソル位置のロングクリック
+// --------------------------
 - (IBAction)buttonLongClick:(id)sender {
     
     [self LongClick];
@@ -820,104 +1005,64 @@ static NSString *errMsgPointid = @"座標がみつかりません";
 
 #pragma mark IBAction Popup
 // --------------------------
-// 名称 ポップアップメニュー
-// 用途 マクロ実行
+// 名称 母港ポップアップ
+// 用途 母港ポップアップを選択したとき、カーソルをポップアップの位置に戻す
 // --------------------------
-- (IBAction)popupMacroShtgk:(id)sender {
-    [self popupMacroExe:[popupMacroShtgk titleOfSelectedItem]];
-}
-- (IBAction)popupMacroBokou:(id)sender {
-    [self popupMacroExe:[popupMacroBokou titleOfSelectedItem]];
-}
-- (IBAction)popupMacroEnsei:(id)sender {
-    [self popupMacroExe:[popupMacroEnsei titleOfSelectedItem]];
+- (IBAction)popupBokouMacro:(id)sender {
+    
+    ClickPoint *cpointObj = [ClickPoint shareManager];
+    
+    // 実行ボタンにマウスカーソルを移動
+    [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:popupMacroBokou.frame];
 }
 
-- (void)popupMacroExe:(NSString *)popupItem {
+// --------------------------
+// 名称 遠征ポップアップ
+// 用途 遠征ポップアップを選択したとき、カーソルをポップアップの位置に戻す
+// --------------------------
+- (IBAction)popupEnseiMacro:(id)sender {
+    
+    ClickPoint *cpointObj = [ClickPoint shareManager];
+    
+    // 実行ボタンにマウスカーソルを移動
+    [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:popupMacroEnsei.frame];
+}
+
+// --------------------------
+// 名称 出撃ポップアップ
+// 用途 出撃ポップアップを選択したとき、カーソルをポップアップの位置に戻す
+// --------------------------
+- (IBAction)popupShtgkMacro:(id)sender {
+    
+    ClickPoint *cpointObj = [ClickPoint shareManager];
+    
+    // 実行ボタンにマウスカーソルを移動
+    [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:popupShtgkArea.frame];
+}
+
+
+#pragma mark IBAction Macro Button
+// --------------------------
+// 名称 母港マクロ実行ボタン
+// 用途 母港 popupで指定されたマクロを実行する
+// --------------------------
+- (IBAction)buttonDownBokouMacroExe:(id)sender {
+    
+    NSString *popupItem = [popupMacroBokou titleOfSelectedItem];
+    
     // デフォルトの値の場合は何もしない
     if ([popupItem isEqualToString:popupDefaultTitle]) {
         return;
     }
     
-    KancolleData *kdata = [KancolleData shareManager];
-    
-    for (Macro *macroObj in kdata.marrMacro) {
-        if ([popupItem isEqualToString:macroObj.macroName]) {
-            [self exeMacroid:macroObj.macroid];
-            break;
-        }
-    }
+    [self popupMacroExe:popupItem];
 }
 
-#pragma mark IBAction matrix Select
 // --------------------------
-// 名称 ラジオボタン制御
-// 用途 実行ボタンの制御
+// 名称 遠征母港マクロボタン
+// 用途 母港を表示してカーソルをボタン上に戻す
 // --------------------------
-- (IBAction)radioSelectMap:(id)sender {
-    
-    NSInteger tag = [[matrixSelectShtgk selectedCell] tag];
-    
-    switch (tag) {
-        // 未選択
-        case 0:
-            [buttonBokou setEnabled:NO];
-            [buttonMacroShtgk setEnabled:NO];
-            [buttonMacroSngki setEnabled:YES];
-            [buttonMacroTetai setEnabled:YES];
-            [buttonMacroRetun setEnabled:NO];
-            [buttonMacroTanju setEnabled:NO];
-            [buttonMacroTanjuPlus setEnabled:NO];
-            break;
-        
-        // 2-2 2-3
-        case 2:
-        case 3:
-            [buttonBokou setEnabled:YES];
-            [buttonMacroShtgk setEnabled:NO];
-            [buttonMacroSngki setEnabled:YES];
-            [buttonMacroTetai setEnabled:YES];
-            [buttonMacroRetun setEnabled:YES];
-            [buttonMacroTanju setEnabled:YES];
-            [buttonMacroTanjuPlus setEnabled:NO];
-            break;
-        
-        // 3-2 5-4
-        case 4:
-        case 6:
-            [buttonBokou setEnabled:YES];
-            [buttonMacroShtgk setEnabled:NO];
-            [buttonMacroSngki setEnabled:NO];
-            [buttonMacroTetai setEnabled:YES];
-            [buttonMacroRetun setEnabled:NO];
-            [buttonMacroTanju setEnabled:NO];
-            [buttonMacroTanjuPlus setEnabled:YES];
-            break;
-
-            // 1-1
-            // 4-3
-        case 1:
-        case 5:
-            [buttonBokou setEnabled:YES];
-            [buttonMacroShtgk setEnabled:NO];
-            [buttonMacroSngki setEnabled:YES];
-            [buttonMacroTetai setEnabled:YES];
-            [buttonMacroRetun setEnabled:YES];
-            [buttonMacroTanju setEnabled:NO];
-            [buttonMacroTanjuPlus setEnabled:NO];
-            break;
-            
-        default:
-            break;
-    }
-}
-
-#pragma mark IBAction Macro Button
-// --------------------------
-// 名称 母港表示ボタン
-// 用途 母港の表示、出撃ボタンへカーソル移動
-// --------------------------
-- (IBAction)buttonBokou:(id)sender {
+- (IBAction)buttonDownEnseiBokou:(id)sender {
     
     // ウインドウをアクティブ
     WebAccess *webObj = [WebAccess shareManager];
@@ -935,9 +1080,52 @@ static NSString *errMsgPointid = @"座標がみつかりません";
     if([cpointObj setClickDownPointWithPointid:bokouPointid]) {
         [cpointObj clickPointWithIsClick:YES];
     }
-    // カーソルの移動
-    [buttonMacroShtgk setEnabled:YES];
-    [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:buttonMacroShtgk.frame];
+    
+    // 母港ボタンにマウスカーソルを移動
+    [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:buttonEnseiBokou.frame];
+}
+
+// --------------------------
+// 名称 遠征マクロ実行ボタン
+// 用途 遠征 popupで指定されたマクロを実行する
+// --------------------------
+- (IBAction)buttonDownEnseiMacroExe:(id)sender {
+    
+    NSString *popupItem = [popupMacroEnsei titleOfSelectedItem];
+    
+    // デフォルトの値の場合は何もしない
+    if ([popupItem isEqualToString:popupDefaultTitle]) {
+        return;
+    }
+    
+    [self popupMacroExe:popupItem];
+}
+
+// --------------------------
+// 名称 出撃母港表示ボタン
+// 用途 母港を表示してカーソルをボタン上に戻す
+// --------------------------
+- (IBAction)buttonDownShtgkBokou:(id)sender {
+    
+    // ウインドウをアクティブ
+    WebAccess *webObj = [WebAccess shareManager];
+    if (![webObj isKancolleWindow]) {
+        [self frontMostWindowSearchText:blankString LabelPointName:errMsgWindow];
+        return;
+    }
+    if (![webObj activeKancolleWindow]) {
+        [self frontMostWindowSearchText:blankString LabelPointName:errMsgActive];
+        return;
+    }
+    
+    ClickPoint *cpointObj = [ClickPoint shareManager];
+    // 母港アイコンクリック
+    if([cpointObj setClickDownPointWithPointid:bokouPointid]) {
+        [cpointObj clickPointWithIsClick:YES];
+    }
+    
+    // 母港ボタンにマウスカーソルを移動
+    [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:buttonShtgkBokou.frame];
 }
 
 // --------------------------
@@ -946,142 +1134,93 @@ static NSString *errMsgPointid = @"座標がみつかりません";
 // --------------------------
 - (IBAction)buttonDownMacroShtgk:(id)sender {
     
-    NSInteger tag = [[matrixSelectShtgk selectedCell] tag];
-    
-    ClickPoint *cpointObj = [ClickPoint shareManager];
-    
-    switch (tag) {
-        case 1:
-            [self exeMacroid:@"Shtgk1-1"];
-            searchKeybind.stringValue = [self searchMacroKeybindWithMacroId:@"ShtgkSngki"];
-            [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:buttonMacroSngki.frame];
-            break;
-        case 2:
-            [self exeMacroid:@"Shtgk2-2"];
-            searchKeybind.stringValue = [self searchKeybindWithPointId:@"PShtgkSentoTanju"];
-            break;
-        case 3:
-            [self exeMacroid:@"Shtgk2-3"];
-            searchKeybind.stringValue = [self searchKeybindWithPointId:@"PShtgkSentoTanju"];
-            break;
-        case 4:
-            [self exeMacroid:@"Shtgk3-2"];
-            searchKeybind.stringValue = [self searchMacroKeybindWithMacroId:@"ShtgkTanjuPlus"];
-            [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:buttonMacroTanjuPlus.frame];
-            break;
-        case 5:
-            [self exeMacroid:@"Shtgk4-3"];
-            searchKeybind.stringValue = [self searchMacroKeybindWithMacroId:@"NormalRenzk"];
-            [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:buttonLongClick.frame];
-            break;
-        case 6:
-            [self exeMacroid:@"Shtgk5-4"];
-            searchKeybind.stringValue = [self searchMacroKeybindWithMacroId:@"ShtgkTanjuPlus"];
-            [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:buttonMacroTanjuPlus.frame];
-            break;
-        default:
-            break;
+    // デフォルトの値の場合は何もしない
+    NSString *popupItem = [popupShtgkArea titleOfSelectedItem];
+    if ([popupItem isEqualToString:popupDefaultShtgkArea]) {
+        return;
     }
-    [buttonMacroShtgk setEnabled:NO];
-}
-// --------------------------
-// 名称 進撃ボタン
-// 用途 エリア別にマウスカーソルを移動する(マクロ実行)
-// --------------------------
-- (IBAction)buttonDownMacroSngki:(id)sender {
-    [self exeMacroid:@"ShtgkSngki"];
     
-    ClickPoint *cpointObj = [ClickPoint shareManager];
-    
-    NSInteger tag = [[matrixSelectShtgk selectedCell] tag];
-    
-    switch (tag) {
-        case 1:
-            searchKeybind.stringValue = [self searchMacroKeybindWithMacroId:@"ShtgkRetun"];
-            [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:buttonMacroRetun.frame];
-            break;
-        default:
-            break;
-    }
+    [self popupMacroExe:popupItem];
 }
-// --------------------------
-// 名称 撤退ボタン
-// 用途 エリア別にマウスカーソルを移動する(マクロ実行)
-// --------------------------
-- (IBAction)buttonDownMacroTetai:(id)sender {
-    [self exeMacroid:@"ShtgkTetai"];
-}
-// --------------------------
-// 名称 進撃せず撤退ボタン
-// 用途 エリア別にマウスカーソルを移動する(マクロ実行)
-// --------------------------
-- (IBAction)buttonDownMacroRetun:(id)sender {
-    [self exeMacroid:@"ShtgkRetun"];
-}
+
 // --------------------------
 // 名称 単従陣ボタン
-// 用途 エリア別にマウスカーソルを移動する(マクロ実行)
+// 用途 単従陣を選択する
 // --------------------------
 - (IBAction)buttonDownMacroTanju:(id)sender {
     [self exeMacroid:@"ShtgkTanju"];
 }
+
 // --------------------------
-// 名称 単従陣+ボタン
-// 用途 エリア別にマウスカーソルを移動する(マクロ実行)
+// 名称 複縦陣ボタン
+// 用途 複縦陣を選択する
 // --------------------------
-- (IBAction)buttonDownMacroTanjuPlus:(id)sender {
-    [self exeMacroid:@"ShtgkTanjuPlus"];
-    
-    NSInteger tag = [[matrixSelectShtgk selectedCell] tag];
-    ClickPoint *cpointObj = [ClickPoint shareManager];
-    
-    switch (tag) {
-        case 4:
-        case 6:
-            // 撤退ボタンへカーソルを移動
-            searchKeybind.stringValue = [self searchMacroKeybindWithMacroId:@"ShtgkTetai"];
-            [cpointObj moveCursorToItemWithPosition:self.window.frame itemPosition:buttonMacroTetai.frame];
-            break;
-        default:
-            break;
-    }
+- (IBAction)buttonDownMacroHukju:(id)sender {
+    [self exeMacroid:@"ShtgkHukju"];
+}
+
+// --------------------------
+// 名称 輪形陣ボタン
+// 用途 輪形陣を選択する
+// --------------------------
+- (IBAction)buttonDownMacroRnkei:(id)sender {
+    [self exeMacroid:@"ShtgkRnkei"];
+}
+
+// --------------------------
+// 名称 梯形陣ボタン
+// 用途 梯形陣を選択する
+// --------------------------
+- (IBAction)buttonDownMacroTekei:(id)sender {
+    [self exeMacroid:@"ShtgkTekei"];
+}
+
+// --------------------------
+// 名称 単横陣ボタン
+// 用途 単横陣を選択する
+// --------------------------
+- (IBAction)buttonDownMacroTanou:(id)sender {
+    [self exeMacroid:@"ShtgkTanou"];
+}
+
+// --------------------------
+// 名称 追撃せずボタン
+// 用途 追撃せずボタンを暫くの間クリックする
+// --------------------------
+- (IBAction)buttonDownMacroTusez:(id)sender {
+    [self exeMacroid:@"ShtgkTusez"];
+}
+
+// --------------------------
+// 名称 夜戦ボタン
+// 用途 夜戦ボタンを暫くの間クリックする
+// --------------------------
+- (IBAction)buttonDownMacroYasen:(id)sender {
+    [self exeMacroid:@"ShtgkYasen"];
+}
+
+// --------------------------
+// 名称 進撃ボタン
+// 用途 進撃ボタンを暫くの間クリックする
+// --------------------------
+- (IBAction)buttonDownMacroSngki:(id)sender {
+    [self exeMacroid:@"ShtgkSngki"];
+}
+// --------------------------
+// 名称 撤退ボタン
+// 用途 撤退ボタンを暫くの間クリックする
+// --------------------------
+- (IBAction)buttonDownMacroTetai:(id)sender {
+    [self exeMacroid:@"ShtgkTetai"];
 }
 
 #pragma mark Menu Action
 // --------------------------
 // 名称 艦これウィジェット起動
-// 用途 ショートカットから艦これウィジェットを起動する
+// 用途 艦これウィジェットを起動する
 // --------------------------
 - (IBAction)menuOpenWidget:(id)sender {
-    
-    // ウインドウの存在確認
-    WebAccess *webObj = [WebAccess shareManager];
-    
-    if (![webObj isKancolleWindow]) {
-        
-        if([webObj openKancolleWidgetWindow]) {
-            
-            KancolleData *kdataObj = [KancolleData shareManager];
-            Mode *modeObj = [kdataObj.marrMode objectAtIndex:NormalMode];
-            
-            ClickPoint *cpointObj = [ClickPoint shareManager];
-            [cpointObj changeCurrentInputModeid:modeObj.modeid];
-            [self inputModeInitialize];
-            [self changeSearchPredicate:blankString];
-            [self frontMostWindowSearchText:blankString LabelPointName:blankString];
-        }
-        else {
-            [self frontMostWindowSearchText:blankString LabelPointName:@"ウインドウ起動失敗"];
-        }
-    }
-    else {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:@"艦これウインドウは既に起動しています。"];
-        [alert runModal];
-    }
-    
-    // ゲームスタートのキーバインドをセット
-    searchKeybind.stringValue = [self searchKeybindWithPointId:@"PWdgetGameStart"];
+    [self openWidget];
 }
 
 // --------------------------
@@ -1108,34 +1247,10 @@ static NSString *errMsgPointid = @"座標がみつかりません";
 
 // --------------------------
 // 名称 艦これウィジェット停止
-// 用途 ショートカットから艦これウィジェットを閉じる
+// 用途 艦これウィジェットを閉じる
 // --------------------------
-- (IBAction)menuCloseWidget:(id)sender {
-    // ウインドウの存在確認
-    WebAccess *webObj = [WebAccess shareManager];
-    
-    if ([webObj isKancolleWindow]) {
-        
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"OK"];
-        [alert addButtonWithTitle:@"Cancel"];
-        [alert setMessageText:@"艦これウィジェットを閉じますか？"];
-        [alert setInformativeText:@"終了確認"];
-        [alert setAlertStyle:NSWarningAlertStyle];
-
-        if ([alert runModal] == NSAlertFirstButtonReturn) {
-            // OK clicked
-            if(![webObj closeKancolleWidgetWindow]) {
-                
-                [self frontMostWindowSearchText:blankString LabelPointName:@"ウインドウClose失敗"];
-            }
-        }
-    }
-    else {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:@"艦これウインドウが起動していません。"];
-        [alert runModal];
-    }
+- (IBAction)menuQuitWidget:(id)sender {
+    [self quitWidget];
 }
 
 // --------------------------

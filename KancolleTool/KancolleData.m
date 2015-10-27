@@ -134,11 +134,22 @@
 // ---------------------------
 - (void) readMacroPlist {
     
+    marrMacro = [NSMutableArray array];
+    
+    [self readMacroWithPlist:@"Macro_Bokou"];
+    [self readMacroWithPlist:@"Macro_Ensei"];
+    [self readMacroWithPlist:@"Macro_ShtgkArea"];
+    [self readMacroWithPlist:@"Macro_Shtgk"];
+    [self readMacroWithPlist:@"Macro_Other"];
+}
+
+- (void)readMacroWithPlist:(NSString *)pfileName {
+    
     NSBundle *bundle = [NSBundle mainBundle];
-    NSString *path = [bundle pathForResource:@"Macro" ofType:@"plist"];
+    NSString *path = [bundle pathForResource:pfileName ofType:@"plist"];
     NSArray *arrPlist = [NSArray arrayWithContentsOfFile:path];
     
-    marrMacro = [NSMutableArray array];
+    // marrMacro = [NSMutableArray array];
     
     for (NSDictionary *element in arrPlist) {
         NSString *macroid = [element objectForKey:@"macroid"];

@@ -62,7 +62,7 @@ NSString * const blankString = @"";
 - (id) init {
     self = [super init];
     if (self) {
-        currentInputModeType = NormalMode;
+        currentInputModeType = ModeNormal;
         mainUpdownKeyIndex = 0;
         subUpdownKeyIndex = 0;
         isMainUpdownKeyFirstOn = NO;
@@ -71,6 +71,7 @@ NSString * const blankString = @"";
         KancolleData *kdata = [KancolleData shareManager];
         Mode *modeObj = [kdata.marrMode objectAtIndex:currentInputModeType];
         
+        // キーバインド読み込み
         for (Keybind *keybindObj in kdata.marrKeybind) {
             
             if ([keybindObj.modeid isEqualTo:modeObj.modeid]) {
@@ -84,7 +85,8 @@ NSString * const blankString = @"";
                     NSInteger count = [keybindChildObj.pointidArray count];
                     KeybindChildIndex *keybindChildIndexObj = [[KeybindChildIndex alloc] initWithKeybind:kb KeybindCount:count];
                     [marrKeybindChildIndex addObject:keybindChildIndexObj];
-                    
+
+                    // 1つのキーで複数のキーバインドを持つ場合のみ追加
                     if (1 < count) {
                         [marrMultiPointKeybind addObject:kb];
                     }
@@ -174,6 +176,7 @@ NSString * const blankString = @"";
                     marrKeybindChildIndex = [NSMutableArray array];
                     marrMultiPointKeybind = [NSMutableArray array];
                     
+                    // キーバインド再読み込み
                     for (KeybindChild *keybindChildObj in keybindObj.arrKeybindChild) {
                         
                         NSString *keybind = keybindChildObj.keybind;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
@@ -14,24 +14,19 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="arrayController" destination="9yd-FT-cNa" id="ve8-BA-E89"/>
-                <outlet property="buttonBokou" destination="mYs-Xi-IP9" id="RpZ-dC-4ZS"/>
                 <outlet property="buttonClick" destination="fie-hI-fNL" id="Rme-Cf-3PL"/>
+                <outlet property="buttonEnseiBokou" destination="kXN-s7-97B" id="F8A-0Z-bQY"/>
                 <outlet property="buttonLongClick" destination="SI2-Tf-z1l" id="0Ug-lv-3Xi"/>
-                <outlet property="buttonMacroRetun" destination="fSC-ln-0y4" id="DUX-97-QFA"/>
-                <outlet property="buttonMacroShtgk" destination="XJP-0D-0dZ" id="OUf-No-trB"/>
-                <outlet property="buttonMacroSngki" destination="6QT-li-nU8" id="YxC-jb-1mP"/>
-                <outlet property="buttonMacroTanju" destination="bz3-7o-B3J" id="zeG-bd-VMa"/>
-                <outlet property="buttonMacroTanjuPlus" destination="qAN-ad-S2F" id="6OP-xC-CRF"/>
-                <outlet property="buttonMacroTetai" destination="qwH-IY-uVk" id="lAP-lx-t8G"/>
+                <outlet property="buttonMacroBokou" destination="U3v-fK-uEZ" id="xIL-Zw-z1s"/>
+                <outlet property="buttonShtgkBokou" destination="mYs-Xi-IP9" id="W8r-Vd-I7c"/>
                 <outlet property="labelClickTime" destination="oPp-rj-MrU" id="kfq-Dm-kpj"/>
                 <outlet property="labelInputMode" destination="w99-7x-PQr" id="1mf-dO-vaY"/>
                 <outlet property="labelKeyCheck" destination="azG-NF-CQa" id="YhU-kD-UPi"/>
                 <outlet property="labelPointidName" destination="Le0-hu-Pmo" id="d7P-LU-cUu"/>
                 <outlet property="labelWaitsec" destination="ull-3s-nOi" id="fBg-Q4-g0F"/>
-                <outlet property="matrixSelectShtgk" destination="oQu-CF-bHu" id="v5b-f3-V1v"/>
                 <outlet property="popupMacroBokou" destination="VDS-6g-8GW" id="mhl-pg-ogT"/>
                 <outlet property="popupMacroEnsei" destination="Ma0-3b-1YW" id="de5-L8-TKC"/>
-                <outlet property="popupMacroShtgk" destination="coo-uN-gSW" id="yyF-oG-dNJ"/>
+                <outlet property="popupShtgkArea" destination="dQC-rp-6lc" id="hIM-4W-atQ"/>
                 <outlet property="searchKeybind" destination="hdS-ra-ec8" id="JLv-ZD-zCL"/>
                 <outlet property="stepperClickTime" destination="N30-Tk-ze9" id="JkH-vs-W5h"/>
                 <outlet property="tableKeybind" destination="2ed-bL-EEd" id="HNO-wx-Jjd"/>
@@ -111,15 +106,15 @@
                                     <action selector="menuOpenWidget:" target="Voe-Tx-rLC" id="UuM-zO-9oW"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Quit Widget" keyEquivalent="x" id="OBw-O4-zIy">
+                                <connections>
+                                    <action selector="menuQuitWidget:" target="Voe-Tx-rLC" id="2Pn-UX-xm4"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Minimize Widget" keyEquivalent="m" id="iEl-aj-TYx">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                 <connections>
                                     <action selector="menuMinimizeWidget:" target="Voe-Tx-rLC" id="ayo-bw-9NT"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Close Widget" keyEquivalent="x" id="OBw-O4-zIy">
-                                <connections>
-                                    <action selector="menuCloseWidget:" target="Voe-Tx-rLC" id="LpX-3q-vEG"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="hJM-fK-KHB"/>
@@ -223,25 +218,36 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCU-ch-ljL" userLabel="出撃 Label">
-                        <rect key="frame" x="159" y="387" width="30" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="出撃" id="AZl-WX-807">
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uvp-D4-KW5" userLabel="Start Button">
+                        <rect key="frame" x="241" y="377" width="66" height="32"/>
+                        <buttonCell key="cell" type="push" title="開始" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="taJ-Io-VSS">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="HiraKakuProN-W3"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="coo-uN-gSW" userLabel="出撃 Popup Button">
-                        <rect key="frame" x="193" y="382" width="199" height="26"/>
-                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="wRg-NK-bo0">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="nzh-wz-rox"/>
-                        </popUpButtonCell>
+                        </buttonCell>
                         <connections>
-                            <action selector="popupMacroShtgk:" target="Voe-Tx-rLC" id="nSC-G3-loa"/>
+                            <action selector="buttonStart:" target="Voe-Tx-rLC" id="RWq-Jw-9QK"/>
                         </connections>
-                    </popUpButton>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kZR-UQ-tbI" userLabel="開始 Button">
+                        <rect key="frame" x="175" y="377" width="66" height="32"/>
+                        <buttonCell key="cell" type="push" title="起動" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KAV-ih-K6X">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonOpenWidget:" target="Voe-Tx-rLC" id="7yg-KW-6TR"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Axv-jD-Mr6" userLabel="終了 Button">
+                        <rect key="frame" x="329" y="377" width="66" height="32"/>
+                        <buttonCell key="cell" type="push" title="終了" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ibb-6w-aEP">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonQuitWidget:" target="Voe-Tx-rLC" id="Kxn-ZP-L8B"/>
+                        </connections>
+                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fie-hI-fNL" userLabel="Click Button">
                         <rect key="frame" x="14" y="343" width="121" height="32"/>
                         <buttonCell key="cell" type="push" title="Click" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DBf-5B-Kca">
@@ -252,26 +258,7 @@
                             <action selector="buttonClick:" target="Voe-Tx-rLC" id="yHp-UF-wns"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o7q-el-ddj" userLabel="母港 Label">
-                        <rect key="frame" x="159" y="354" width="30" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="母港" id="vWu-gc-Hg6">
-                            <font key="font" size="13" name="HiraKakuProN-W3"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VDS-6g-8GW" userLabel="母港 Popup Button">
-                        <rect key="frame" x="193" y="349" width="199" height="26"/>
-                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="V2F-a2-8Vu">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="IfT-67-4o8"/>
-                        </popUpButtonCell>
-                        <connections>
-                            <action selector="popupMacroBokou:" target="Voe-Tx-rLC" id="2r7-8A-jbq"/>
-                        </connections>
-                    </popUpButton>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SI2-Tf-z1l" userLabel="Click Time Button">
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SI2-Tf-z1l" userLabel="Long Click Button">
                         <rect key="frame" x="14" y="310" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="LC" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xtr-KI-fNX">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -281,8 +268,52 @@
                             <action selector="buttonLongClick:" target="Voe-Tx-rLC" id="nlh-yC-hcV"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oPp-rj-MrU" userLabel="Long Click Label">
+                        <rect key="frame" x="84" y="320" width="26" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="LC" placeholderString="Click Time" id="O7h-pr-phD">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N30-Tk-ze9" userLabel="Long Click Stepper">
+                        <rect key="frame" x="113" y="314" width="19" height="27"/>
+                        <stepperCell key="cell" continuous="YES" alignment="left" minValue="3" maxValue="20" doubleValue="3" id="Xoy-Nu-9kq"/>
+                        <connections>
+                            <action selector="stepperClickTime:" target="Voe-Tx-rLC" id="MXf-vO-7QC"/>
+                        </connections>
+                    </stepper>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o7q-el-ddj" userLabel="母港 Label">
+                        <rect key="frame" x="145" y="352" width="30" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="母港" id="vWu-gc-Hg6">
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VDS-6g-8GW" userLabel="母港 Popup Button">
+                        <rect key="frame" x="179" y="345" width="151" height="26"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="V2F-a2-8Vu">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="IfT-67-4o8"/>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="popupBokouMacro:" target="Voe-Tx-rLC" id="Gc0-pZ-bSs"/>
+                        </connections>
+                    </popUpButton>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U3v-fK-uEZ" userLabel="実行 Button">
+                        <rect key="frame" x="329" y="343" width="66" height="32"/>
+                        <buttonCell key="cell" type="push" title="実行" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eFd-7f-gpC">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                            <connections>
+                                <action selector="buttonDownBokouMacroExe:" target="Voe-Tx-rLC" id="dPS-I6-7KJ"/>
+                            </connections>
+                        </buttonCell>
+                    </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oZi-FQ-2FP" userLabel="遠征 Label">
-                        <rect key="frame" x="159" y="321" width="30" height="17"/>
+                        <rect key="frame" x="145" y="321" width="30" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="遠征" id="U5w-ZW-t6B">
                             <font key="font" size="13" name="HiraKakuProN-W3"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -290,16 +321,36 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ma0-3b-1YW" userLabel="遠征 Popup Button">
-                        <rect key="frame" x="193" y="316" width="199" height="26"/>
+                        <rect key="frame" x="179" y="316" width="120" height="26"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="sac-p8-4FY">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="0oB-PN-t9H"/>
                         </popUpButtonCell>
                         <connections>
-                            <action selector="popupMacroEnsei:" target="Voe-Tx-rLC" id="fvN-3G-bZB"/>
+                            <action selector="popupEnseiMacro:" target="Voe-Tx-rLC" id="sAR-Oj-DPf"/>
                         </connections>
                     </popUpButton>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kXN-s7-97B" userLabel="母 Button">
+                        <rect key="frame" x="298" y="312" width="53" height="32"/>
+                        <buttonCell key="cell" type="push" title="母" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="brI-1r-GGq">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonDownEnseiBokou:" target="Voe-Tx-rLC" id="eAy-1K-CUc"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mb9-eF-qho" userLabel="派 Button">
+                        <rect key="frame" x="342" y="312" width="53" height="32"/>
+                        <buttonCell key="cell" type="push" title="派" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q6L-W0-f7e">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonDownEnseiMacroExe:" target="Voe-Tx-rLC" id="FA9-IM-MmL"/>
+                        </connections>
+                    </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="mOk-f1-Znr">
                         <rect key="frame" x="20" y="299" width="369" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -352,75 +403,37 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
-                    <matrix verticalHuggingPriority="750" fixedFrame="YES" allowsEmptySelection="NO" autorecalculatesCellSize="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQu-CF-bHu" userLabel="出撃エリア Matrix">
-                        <rect key="frame" x="20" y="216" width="451" height="18"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        <size key="cellSize" width="48" height="18"/>
-                        <size key="intercellSpacing" width="4" height="7"/>
-                        <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="gQx-YJ-0ce">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <cells>
-                            <column>
-                                <buttonCell type="radio" title="未選" imagePosition="left" alignment="left" state="on" inset="2" id="kJT-0h-EY9">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </column>
-                            <column>
-                                <buttonCell type="radio" title="1-1" imagePosition="left" alignment="left" tag="1" inset="2" id="OGA-T6-b36">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </column>
-                            <column>
-                                <buttonCell type="radio" title="2-2" imagePosition="left" alignment="left" tag="2" inset="2" id="x5f-tc-wiB">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </column>
-                            <column>
-                                <buttonCell type="radio" title="2-3" imagePosition="left" alignment="left" tag="3" inset="2" id="V1L-wk-A3i">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </column>
-                            <column>
-                                <buttonCell type="radio" title="3-2" imagePosition="left" alignment="left" tag="4" inset="2" id="eZy-Rd-Tuz">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </column>
-                            <column>
-                                <buttonCell type="radio" title="4-3" imagePosition="left" alignment="left" tag="5" inset="2" id="VNf-D1-tdb">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </column>
-                            <column>
-                                <buttonCell type="radio" title="5-4" imagePosition="left" alignment="left" tag="6" inset="2" id="V8D-Jy-wdK">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </column>
-                        </cells>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXs-ND-tgy" userLabel="出撃Map Label">
+                        <rect key="frame" x="20" y="215" width="30" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="出撃" id="0iS-M6-GH4">
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQC-rp-6lc" userLabel="出撃エリア Popup Button">
+                        <rect key="frame" x="54" y="208" width="208" height="26"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="0yh-Ye-laz">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="CCF-qm-py0"/>
+                        </popUpButtonCell>
                         <connections>
-                            <action selector="radioSelectMap:" target="Voe-Tx-rLC" id="5ko-Uu-sUx"/>
+                            <action selector="popupShtgkMacro:" target="Voe-Tx-rLC" id="Kbq-lO-OYS"/>
                         </connections>
-                    </matrix>
+                    </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mYs-Xi-IP9" userLabel="母港 Button">
-                        <rect key="frame" x="14" y="179" width="66" height="32"/>
+                        <rect key="frame" x="267" y="204" width="66" height="32"/>
                         <buttonCell key="cell" type="push" title="母港" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zpr-wh-Axl">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="HiraKakuProN-W3"/>
                         </buttonCell>
                         <connections>
-                            <action selector="buttonBokou:" target="Voe-Tx-rLC" id="P8g-Ih-LNO"/>
+                            <action selector="buttonDownShtgkBokou:" target="Voe-Tx-rLC" id="BDy-Vf-byC"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XJP-0D-0dZ" userLabel="出撃 Button">
-                        <rect key="frame" x="80" y="179" width="66" height="32"/>
+                        <rect key="frame" x="329" y="204" width="66" height="32"/>
                         <buttonCell key="cell" type="push" title="出撃" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UQJ-03-lYJ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -429,28 +442,28 @@
                             <action selector="buttonDownMacroShtgk:" target="Voe-Tx-rLC" id="YWh-AT-84m"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bz3-7o-B3J" userLabel="単従陣 Button">
-                        <rect key="frame" x="168" y="179" width="79" height="32"/>
-                        <buttonCell key="cell" type="push" title="単従陣" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="asu-dd-Ayd">
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSC-ln-0y4" userLabel="追撃せず Button">
+                        <rect key="frame" x="50" y="177" width="66" height="32"/>
+                        <buttonCell key="cell" type="push" title="追ず" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DPc-6J-92p">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="HiraKakuProN-W3"/>
                         </buttonCell>
                         <connections>
-                            <action selector="buttonDownMacroTanju:" target="Voe-Tx-rLC" id="vSo-ip-t3r"/>
+                            <action selector="buttonDownMacroTusez:" target="Voe-Tx-rLC" id="71F-eZ-SrN"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qAN-ad-S2F" userLabel="単従陣＋ Button">
-                        <rect key="frame" x="247" y="179" width="92" height="32"/>
-                        <buttonCell key="cell" type="push" title="単従陣＋" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d1o-fW-f78">
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pjs-6y-xAk" userLabel="夜戦 Button">
+                        <rect key="frame" x="111" y="177" width="66" height="32"/>
+                        <buttonCell key="cell" type="push" title="夜戦" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6dN-zW-YEr">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="HiraKakuProN-W3"/>
                         </buttonCell>
                         <connections>
-                            <action selector="buttonDownMacroTanjuPlus:" target="Voe-Tx-rLC" id="XEa-E4-y3m"/>
+                            <action selector="buttonDownMacroYasen:" target="Voe-Tx-rLC" id="mdZ-2j-G5u"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6QT-li-nU8" userLabel="進撃 Button">
-                        <rect key="frame" x="14" y="146" width="66" height="32"/>
+                        <rect key="frame" x="50" y="145" width="66" height="32"/>
                         <buttonCell key="cell" type="push" title="進撃" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FlA-m5-1cF">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="HiraKakuProN-W3"/>
@@ -460,7 +473,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwH-IY-uVk" userLabel="撤退 Button">
-                        <rect key="frame" x="80" y="146" width="66" height="32"/>
+                        <rect key="frame" x="111" y="144" width="66" height="32"/>
                         <buttonCell key="cell" type="push" title="撤退" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5LE-nh-TYY">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="HiraKakuProN-W3"/>
@@ -469,18 +482,58 @@
                             <action selector="buttonDownMacroTetai:" target="Voe-Tx-rLC" id="u0L-Kv-Swc"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSC-ln-0y4" userLabel="追撃せず撤退 Button">
-                        <rect key="frame" x="168" y="146" width="171" height="32"/>
-                        <buttonCell key="cell" type="push" title="追撃せず撤退" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DPc-6J-92p">
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bz3-7o-B3J" userLabel="単従陣 Button">
+                        <rect key="frame" x="177" y="177" width="53" height="32"/>
+                        <buttonCell key="cell" type="push" title="単" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="asu-dd-Ayd">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="HiraKakuProN-W3"/>
                         </buttonCell>
                         <connections>
-                            <action selector="buttonDownMacroRetun:" target="Voe-Tx-rLC" id="5GV-Jr-tuv"/>
+                            <action selector="buttonDownMacroTanju:" target="Voe-Tx-rLC" id="vSo-ip-t3r"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ibp-tw-7Rb" userLabel="複縦陣 Button">
+                        <rect key="frame" x="230" y="177" width="53" height="32"/>
+                        <buttonCell key="cell" type="push" title="複" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tOm-nn-omc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonDownMacroHukju:" target="Voe-Tx-rLC" id="zjW-67-LmG"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GyW-B3-2EG" userLabel="輪形陣 Button">
+                        <rect key="frame" x="283" y="177" width="53" height="32"/>
+                        <buttonCell key="cell" type="push" title="輪" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HLf-ev-O1S">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonDownMacroRnkei:" target="Voe-Tx-rLC" id="TGk-nk-wxg"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qgO-Oj-vxH" userLabel="梯形陣 Button">
+                        <rect key="frame" x="177" y="144" width="53" height="32"/>
+                        <buttonCell key="cell" type="push" title="梯" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lkU-lP-Qr7">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonDownMacroTekei:" target="Voe-Tx-rLC" id="rUC-4B-yiu"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7vR-2H-dqO" userLabel="単横陣 Button">
+                        <rect key="frame" x="230" y="144" width="53" height="32"/>
+                        <buttonCell key="cell" type="push" title="横" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7fW-kV-QA9">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HiraKakuProN-W3"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonDownMacroTanou:" target="Voe-Tx-rLC" id="CUC-VZ-FPm"/>
                         </connections>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="E4V-8j-hap">
-                        <rect key="frame" x="20" y="140" width="377" height="5"/>
+                        <rect key="frame" x="17" y="139" width="377" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
@@ -624,21 +677,6 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N30-Tk-ze9" userLabel="Click Time Stepper">
-                        <rect key="frame" x="113" y="314" width="19" height="27"/>
-                        <stepperCell key="cell" continuous="YES" alignment="left" minValue="3" maxValue="20" doubleValue="3" id="Xoy-Nu-9kq"/>
-                        <connections>
-                            <action selector="stepperClickTime:" target="Voe-Tx-rLC" id="MXf-vO-7QC"/>
-                        </connections>
-                    </stepper>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oPp-rj-MrU" userLabel="Click Time Label">
-                        <rect key="frame" x="84" y="320" width="26" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="LC" placeholderString="Click Time" id="O7h-pr-phD">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
             </view>
             <point key="canvasLocation" x="408.5" y="473"/>

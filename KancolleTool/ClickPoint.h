@@ -10,22 +10,24 @@
 #import <Cocoa/Cocoa.h>
 
 // 入力モード
+// Mode.plist と同じ順番にしておくこと！
 typedef NS_ENUM(NSUInteger, CurrentInputMode) {
-    NormalMode = 0,
-    ShutugekiMode,
-    EnshuMode,
-    EnseiMode,
-    NinmuMode,
-    HenseiMode,
-    HokyuMode,
-    KaisoMode,
-    KaisoSoubiMode,
-    KaisoKindaikaMode,
-    NyukyoMode,
-    KenzoMode,
-    KaitaiMode,
-    KaihatsuMode,
-    HaikiMode
+    ModeNormal = 0,
+    ModeShuko,
+    ModeShtgk,
+    ModeEnshu,
+    ModeEnsei,
+    ModeNinmu,
+    ModeHnsei,
+    ModeHokyu,
+    ModeKaiso,
+    ModeKbuki,
+    ModeKkndi,
+    ModeNykyo,
+    ModeKenzo,
+    ModeKitai,
+    ModeKhatu,
+    ModeHaiki
 };
 
 @interface ClickPoint : NSObject

@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2F2C33C1BD89F6D00DA3B08 /* Macro_ShtgkArea.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F2C33B1BD89F6D00DA3B08 /* Macro_ShtgkArea.plist */; };
+		D2F2C33E1BD8A0B800DA3B08 /* Macro_Shtgk.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F2C33D1BD8A0B800DA3B08 /* Macro_Shtgk.plist */; };
+		D2F2C3401BD8A1F200DA3B08 /* Macro_Ensei.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F2C33F1BD8A1F200DA3B08 /* Macro_Ensei.plist */; };
+		D2F2C3421BD8A6F600DA3B08 /* Macro_Other.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F2C3411BD8A6F500DA3B08 /* Macro_Other.plist */; };
 		D2FBBC7C1B5518B100017BB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBC7B1B5518B100017BB5 /* AppDelegate.m */; };
 		D2FBBC7E1B5518B100017BB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBC7D1B5518B100017BB5 /* main.m */; };
 		D2FBBC801B5518B100017BB5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC7F1B5518B100017BB5 /* Images.xcassets */; };
 		D2FBBC831B5518B100017BB5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC811B5518B100017BB5 /* MainMenu.xib */; };
 		D2FBBC8F1B5518B100017BB5 /* KancolleToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBBC8E1B5518B100017BB5 /* KancolleToolTests.m */; };
 		D2FBBCA11B5519BD00017BB5 /* Keybind.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC9C1B5519BD00017BB5 /* Keybind.plist */; };
-		D2FBBCA21B5519BD00017BB5 /* Macro.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC9D1B5519BD00017BB5 /* Macro.plist */; };
+		D2FBBCA21B5519BD00017BB5 /* Macro_Bokou.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC9D1B5519BD00017BB5 /* Macro_Bokou.plist */; };
 		D2FBBCA31B5519BD00017BB5 /* Mode.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC9E1B5519BD00017BB5 /* Mode.plist */; };
 		D2FBBCA41B5519BD00017BB5 /* Pointid.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBC9F1B5519BD00017BB5 /* Pointid.plist */; };
 		D2FBBCA51B5519BD00017BB5 /* PointidToMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2FBBCA01B5519BD00017BB5 /* PointidToMode.plist */; };
@@ -40,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2F2C33B1BD89F6D00DA3B08 /* Macro_ShtgkArea.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Macro_ShtgkArea.plist; sourceTree = "<group>"; };
+		D2F2C33D1BD8A0B800DA3B08 /* Macro_Shtgk.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Macro_Shtgk.plist; sourceTree = "<group>"; };
+		D2F2C33F1BD8A1F200DA3B08 /* Macro_Ensei.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Macro_Ensei.plist; sourceTree = "<group>"; };
+		D2F2C3411BD8A6F500DA3B08 /* Macro_Other.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Macro_Other.plist; sourceTree = "<group>"; };
 		D2FBBC751B5518B100017BB5 /* KancolleTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KancolleTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2FBBC791B5518B100017BB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2FBBC7A1B5518B100017BB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,7 +59,7 @@
 		D2FBBC8D1B5518B100017BB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2FBBC8E1B5518B100017BB5 /* KancolleToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KancolleToolTests.m; sourceTree = "<group>"; };
 		D2FBBC9C1B5519BD00017BB5 /* Keybind.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keybind.plist; sourceTree = "<group>"; };
-		D2FBBC9D1B5519BD00017BB5 /* Macro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Macro.plist; sourceTree = "<group>"; };
+		D2FBBC9D1B5519BD00017BB5 /* Macro_Bokou.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Macro_Bokou.plist; sourceTree = "<group>"; };
 		D2FBBC9E1B5519BD00017BB5 /* Mode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Mode.plist; sourceTree = "<group>"; };
 		D2FBBC9F1B5519BD00017BB5 /* Pointid.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Pointid.plist; sourceTree = "<group>"; };
 		D2FBBCA01B5519BD00017BB5 /* PointidToMode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PointidToMode.plist; sourceTree = "<group>"; };
@@ -159,7 +167,11 @@
 			isa = PBXGroup;
 			children = (
 				D2FBBC9C1B5519BD00017BB5 /* Keybind.plist */,
-				D2FBBC9D1B5519BD00017BB5 /* Macro.plist */,
+				D2FBBC9D1B5519BD00017BB5 /* Macro_Bokou.plist */,
+				D2F2C3411BD8A6F500DA3B08 /* Macro_Other.plist */,
+				D2F2C33F1BD8A1F200DA3B08 /* Macro_Ensei.plist */,
+				D2F2C33D1BD8A0B800DA3B08 /* Macro_Shtgk.plist */,
+				D2F2C33B1BD89F6D00DA3B08 /* Macro_ShtgkArea.plist */,
 				D2FBBC9E1B5519BD00017BB5 /* Mode.plist */,
 				D2FBBC9F1B5519BD00017BB5 /* Pointid.plist */,
 				D2FBBCA01B5519BD00017BB5 /* PointidToMode.plist */,
@@ -289,13 +301,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2FBBCA41B5519BD00017BB5 /* Pointid.plist in Resources */,
+				D2F2C33E1BD8A0B800DA3B08 /* Macro_Shtgk.plist in Resources */,
+				D2F2C3421BD8A6F600DA3B08 /* Macro_Other.plist in Resources */,
 				D2FBBC801B5518B100017BB5 /* Images.xcassets in Resources */,
 				D2FBBCAD1B553F0900017BB5 /* Widget.plist in Resources */,
 				D2FBBCA31B5519BD00017BB5 /* Mode.plist in Resources */,
 				D2FBBC831B5518B100017BB5 /* MainMenu.xib in Resources */,
 				D2FBBCA11B5519BD00017BB5 /* Keybind.plist in Resources */,
-				D2FBBCA21B5519BD00017BB5 /* Macro.plist in Resources */,
+				D2FBBCA21B5519BD00017BB5 /* Macro_Bokou.plist in Resources */,
+				D2F2C33C1BD89F6D00DA3B08 /* Macro_ShtgkArea.plist in Resources */,
 				D2FBBCA51B5519BD00017BB5 /* PointidToMode.plist in Resources */,
+				D2F2C3401BD8A1F200DA3B08 /* Macro_Ensei.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

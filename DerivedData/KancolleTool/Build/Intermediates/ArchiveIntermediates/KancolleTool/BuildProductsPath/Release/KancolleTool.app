@@ -1,0 +1,1 @@
+/Users/dizakimbp/Desktop/XcodeProjects/KancolleTool/DerivedData/KancolleTool/Build/Intermediates/ArchiveIntermediates/KancolleTool/InstallationBuildProductsLocation/Applications/KancolleTool.app
